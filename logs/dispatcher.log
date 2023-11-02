@@ -8,3 +8,17 @@
 2023-10-31 01:37:49 INFO  TelegramBot:73 - Replied to user: /help
 2023-10-31 01:38:25 INFO  TelegramBot:74 - Replied to user: /help
 2023-10-31 01:38:38 INFO  TelegramBot:74 - Replied to user: /help
+2023-10-31 16:29:45 ERROR TelegramBot:51 - Error setting bot's command list: Unable to execute setMyCommands method
+2023-10-31 16:29:45 ERROR BotInitializer:27 - Error occurred:Error removing old webhook
+2023-10-31 16:35:46 ERROR TelegramBot:51 - Error setting bot's command list: Unable to execute setMyCommands method
+2023-10-31 16:35:46 ERROR BotInitializer:27 - Error occurred:Error removing old webhook
+2023-10-31 17:20:12 INFO  TelegramBot:82 - Replied to user: /settings
+2023-10-31 17:20:12 INFO  TelegramBot:82 - Replied to user: /mydata
+2023-10-31 17:20:30 INFO  TelegramBot:109 - Replied to user: Александр
+2023-10-31 17:33:00 INFO  TelegramBot:109 - Replied to user: Александр
+2023-11-03 00:36:51 INFO  TelegramBot:122 - Replied to user: Александр
+2023-11-03 00:46:04 INFO  TelegramBot:122 - Replied to user: Александр
+2023-11-03 00:47:32 INFO  TelegramBot:114 - user saved: User(chatId=5193806268, firstName=Александр, lastName=Билюба, userName=R1ch02, registeredAt=2023-11-03 00:47:32.01)
+2023-11-03 00:47:32 INFO  TelegramBot:122 - Replied to user: Александр
+2023-11-03 00:52:04 INFO  TelegramBot:114 - user saved: User(chatId=470293084, firstName=Dazai, lastName=null, userName=MaroonMorass, registeredAt=2023-11-03 00:52:04.958)
+2023-11-03 00:52:05 INFO  TelegramBot:122 - Replied to user: Dazai

@@ -3,6 +3,8 @@ package com.application.springbot.service;
 import com.application.springbot.config.BotConfig;
 //import com.application.springbot.model.User;
 //import com.application.springbot.model.UserRepository;
+import com.application.springbot.model.User;
+import com.application.springbot.model.UserRepository;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-//@Slf4j
 @Log4j
 public class TelegramBot extends TelegramLongPollingBot {
-//    @Autowired
-//    private UserRepository userRepository;
+
+    @Autowired
+    private UserRepository userRepository;
     final BotConfig config;
 
     public static final String HELP_TEXT = "This bot created to learn. \n\n" +
@@ -69,13 +71,24 @@ public class TelegramBot extends TelegramLongPollingBot {
             long chatId = update.getMessage().getChatId();
             switch (messageText) {
                 case "/start":
-//                        registerUser(update.getMessage());
+                        registerUser(update.getMessage());
                         startCommandReceived(chatId,update.getMessage().getChat().getFirstName());
                         break;
 
+                case "/mydata":
+
+                        break;
+
+                case "/deletedata":
+
+                        break;
+
                 case "/help":
-                    sendMessage(chatId,HELP_TEXT);
-                    break;
+                        sendMessage(chatId,HELP_TEXT);
+                        break;
+                case "/settings":
+
+                        break;
 
                 default:
                         sendMessage(chatId,"Sorry, command was not recognized");
@@ -85,22 +98,22 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     }
 
-//    private void registerUser(Message message) {
-//        if(userRepository.findById(message.getChatId()).isEmpty()){
-//            var chatId = message.getChatId();
-//            var chat = message.getChat();
-//
-//            User user = new User();
-//            user.setChatId(chatId);
-//            user.setFirstName(chat.getFirstName());
-//            user.setLastName(chat.getLastName());
-//            user.setUserName(chat.getUserName());
-//            user.setRegisteredAt(new Timestamp(System.currentTimeMillis()));
-//
-//            userRepository.save(user);
-//            log.info("user saved: " + user);
-//        }
-//    }
+    private void registerUser(Message message) {
+        if(userRepository.findById(message.getChatId()).isEmpty()){
+            var chatId = message.getChatId();
+            var chat = message.getChat();
+
+            User user = new User();
+            user.setChatId(chatId);
+            user.setFirstName(chat.getFirstName());
+            user.setLastName(chat.getLastName());
+            user.setUserName(chat.getUserName());
+            user.setRegisteredAt(new Timestamp(System.currentTimeMillis()));
+
+            userRepository.save(user);
+            log.info("user saved: " + user);
+        }
+    }
 
     private void startCommandReceived(long chatId, String name){
 
