@@ -16,6 +16,9 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import javax.xml.stream.events.Comment;
@@ -30,6 +33,10 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Autowired
     private UserRepository userRepository;
     final BotConfig config;
+
+    final String ERROR_TEXT = "Error occurred: ";
+
+
 
     public static final String HELP_TEXT = "This bot created to learn. \n\n" +
             "You can execute commands from the main menu on the left or by typing a command: \n\n" +
@@ -66,6 +73,11 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
 
+        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
+        keyboardMarkup.setOneTimeKeyboard(true);
+        List<KeyboardRow> keyboard = new ArrayList<>();
+
+
         if (update.hasMessage() && update.getMessage().hasText()){
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
@@ -77,11 +89,29 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                 case "/mydata":
 
+                        sendMessage(chatId,userRepository.findById(chatId).toString());
+
                         break;
 
                 case "/deletedata":
 
-                        break;
+                        KeyboardRow row = new KeyboardRow();
+                        row.add(new KeyboardButton("Да"));
+                        row.add(new KeyboardButton("Нет"));
+                        keyboard.add(row);
+                        keyboardMarkup.setKeyboard(keyboard);
+                        SendMessage message = new SendMessage();
+                        message.setChatId(chatId);
+                        message.setText("Уверены, что хотите удалить все данные? " + "\n" + "Для повторной регистрации введите /start");
+                        message.setReplyMarkup(keyboardMarkup);
+                    try {
+                        execute(message);
+                    } catch (TelegramApiException e) {
+                        log.error(ERROR_TEXT + e);
+                    }
+
+
+                    break;
 
                 case "/help":
                         sendMessage(chatId,HELP_TEXT);
@@ -132,7 +162,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         try {
             execute(message);
         } catch (TelegramApiException e) {
-            log.error("Error occurred: " + e.getMessage());
+            log.error(ERROR_TEXT + e.getMessage());
         }
 
     }

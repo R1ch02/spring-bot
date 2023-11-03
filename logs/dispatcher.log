@@ -22,3 +22,6 @@
 2023-11-03 00:47:32 INFO  TelegramBot:122 - Replied to user: Александр
 2023-11-03 00:52:04 INFO  TelegramBot:114 - user saved: User(chatId=470293084, firstName=Dazai, lastName=null, userName=MaroonMorass, registeredAt=2023-11-03 00:52:04.958)
 2023-11-03 00:52:05 INFO  TelegramBot:122 - Replied to user: Dazai
+2023-11-03 12:18:42 INFO  TelegramBot:114 - user saved: User(chatId=969204964, firstName=Zhurkin, lastName=Danila, userName=Yoru_clone, registeredAt=2023-11-03 12:18:42.738)
+2023-11-03 12:18:42 ERROR TelegramBot:135 - Error occurred: Error executing org.telegram.telegrambots.meta.api.methods.send.SendMessage query: [403] Forbidden: bot was blocked by the user
+2023-11-03 12:18:42 INFO  TelegramBot:122 - Replied to user: Zhurkin
