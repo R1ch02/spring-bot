@@ -4,9 +4,9 @@ services:
   db:
     image: postgres:11.2
     environment:
-      POSTGRES_PASSWORD: N7wBrnQK
-      POSTGRES_USER: registration
-      POSTGRES_DB: ru_invest
+      POSTGRES_PASSWORD: 111
+      POSTGRES_USER: postgres
+      POSTGRES_DB: tg-bot
     networks:
       - net
     ports:
@@ -22,9 +22,9 @@ services:
       HTTP_PORT: 80
       HTTP_HOST: 0.0.0.0
       APP_BUILD: dev
-      POSTGRES_PASSWORD: N7wBrnQK
-      POSTGRES_USER: registration
-      POSTGRES_DB: ru_invest
+      POSTGRES_PASSWORD: 111
+      POSTGRES_USER: postgres
+      POSTGRES_DB: tg-bot
       POSTGRES_DB_EN: en_invest
       POSTGRES_PORT: 5432
       #POSTGRES_HOST: 212.109.223.229
